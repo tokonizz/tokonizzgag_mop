@@ -101,3 +101,50 @@ function absenHariIni(){
   vouchers[code]={type:"fixed",value:5000,expiry:today,minSpend:0};
   document.getElementById("absen-result").textContent=`Absen berhasil! Streak ${streak} hari 🎉\nVoucher Rp5.000 kode: ${code} (hari ini)`;
 }
+
+// 🔑 Password owner (ganti sesuai keinginanmu)
+const OWNER_PASSWORD = "admin123";
+
+function ownerLogin(){
+  let pass=document.getElementById("owner-pass").value;
+  if(pass===OWNER_PASSWORD){
+    document.getElementById("owner-login").style.display="none";
+    document.getElementById("owner-panel").style.display="block";
+    document.getElementById("owner-msg").textContent="";
+  } else {
+    document.getElementById("owner-msg").textContent="Password salah!";
+  }
+}
+
+function showVouchers(){
+  let txt="Daftar Voucher Aktif:\n";
+  for(let code in vouchers){
+    let v=vouchers[code];
+    txt+=`${code} → ${v.type} ${v.value} (exp: ${v.expiry})\n`;
+  }
+  document.getElementById("voucher-list").textContent=txt;
+}
+
+function resetSpin(){
+  localStorage.removeItem("lastSpin");
+  alert("Spin harian semua user direset!");
+}
+
+function resetAbsen(){
+  localStorage.removeItem("lastAbsen");
+  localStorage.removeItem("streak");
+  alert("Absen harian semua user direset!");
+}
+
+function addVoucher(){
+  let code=document.getElementById("new-code").value.trim().toUpperCase();
+  let value=parseInt(document.getElementById("new-value").value);
+  let type=document.getElementById("new-type").value;
+  if(code && value>0){
+    vouchers[code]={type:type,value:value,expiry:"2025-12-31",minSpend:0};
+    alert(`Voucher ${code} ditambahkan!`);
+    showVouchers();
+  } else {
+    alert("Isi kode & nilai voucher dulu!");
+  }
+      }
