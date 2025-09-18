@@ -76,3 +76,31 @@
 <script src="script.js"></script>
 </body>
   </html>
+
+<!-- Admin / Owner -->
+<section id="owner" class="box">
+  <h2>🔑 Panel Owner</h2>
+  <div id="owner-login">
+    <input type="password" id="owner-pass" placeholder="Password owner">
+    <button onclick="ownerLogin()">Login</button>
+    <p id="owner-msg"></p>
+  </div>
+
+  <div id="owner-panel" style="display:none;">
+    <h3>Selamat datang, Owner!</h3>
+    <button onclick="showVouchers()">📜 Lihat Voucher Aktif</button>
+    <button onclick="resetSpin()">♻️ Reset Spin Harian</button>
+    <button onclick="resetAbsen()">♻️ Reset Absen Harian</button>
+
+    <h4>Tambah Voucher Manual</h4>
+    <input type="text" id="new-code" placeholder="Kode">
+    <input type="number" id="new-value" placeholder="Nilai">
+    <select id="new-type">
+      <option value="percent">%</option>
+      <option value="fixed">Rp</option>
+    </select>
+    <button onclick="addVoucher()">Tambah</button>
+
+    <pre id="voucher-list"></pre>
+  </div>
+</section>
